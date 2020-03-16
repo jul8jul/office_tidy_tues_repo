@@ -33,7 +33,12 @@ ggplot(office_ratings, aes(x=season, y= episode, label= imdb_rating)) +
    labs(title="The Office Ratings", 
        subtitle="Using Imdb Ratings for Each Episode of Every Season", x= "Season", y= "Episode", color= "Imdb Rating") + 
  #make title bold
-   theme(plot.title = element_text(face = "bold"))
+   theme(plot.title = element_text(face = "bold")) -> office_figure
+office_figure
+
+#save plot as png
+ggsave("fifth_tidy_tues.png", office_figure, height = 6, width = 5)
+
 ```
 
 ### This tidy tuesday I learned how to add values on top of the points. I also gained more expiernce with factoring. Lastly, I found a shortcut to using viridis color pallette. 
