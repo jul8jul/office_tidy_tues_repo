@@ -1,0 +1,41 @@
+---
+title: "Fifth_tidy_tues"
+author: "Julianne Gallagher"
+date: "3/16/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+theme_set(theme_classic())
+```
+
+
+```{r}
+##read in data
+office_ratings <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-03-17/office_ratings.csv')
+#view data set 
+office_ratings
+```
+
+```{r, fig.height= 6, fig.width= 5}
+ggplot(office_ratings, aes(x=season, y= episode, label= imdb_rating)) + 
+  #factor to remove gaps
+  geom_point(stat='identity', aes(col=imdb_rating, x=factor(season), y=factor(episode)), size=6) + 
+ # a colorblind friendly pallete
+   scale_color_viridis_c() +
+  #the text on the points
+  geom_text(color="black", size=3) +
+  #change axis labels to font size 9 
+  theme(axis.text=(element_text(size= 9))) +
+ # fix labels, added subtitle as well
+   labs(title="The Office Ratings", 
+       subtitle="Using Imdb Ratings for Each Episode of Every Season", x= "Season", y= "Episode", color= "Imdb Rating") + 
+ #make title bold
+   theme(plot.title = element_text(face = "bold"))
+```
+
+### This tidy tuesday I learned how to add values on top of the points. I also gained more expiernce with factoring. Lastly, I found a shortcut to using viridis color pallette. 
+
+
